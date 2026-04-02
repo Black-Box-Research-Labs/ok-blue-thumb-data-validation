@@ -1,0 +1,93 @@
+======================================================================
+PHASE 2: LINEAR MIXED-EFFECTS ANALYSIS RESULTS
+Generated: 2026-02-22 11:08:18
+Model: Dyer (2026) recommended framework
+======================================================================
+
+1. VARIANCE DECOMPOSITION
+----------------------------------------
+
+  Volunteer Within-Test (Titration Replicates):
+    N = 2,566
+    Mean |diff| = 1.53 mg/L (±0.11 95% CI)
+    Median |diff| = 0.00 mg/L
+    SD of differences = 2.95 mg/L
+
+  Professional Within-Test (Churn Splitter Duplicates):
+    N = 113
+    Mean |diff| = 2.51 mg/L (±0.72 95% CI)
+    Median |diff| = 1.00 mg/L
+    SD of differences = 4.57 mg/L
+
+  Professional Within-Site (Spatial Replicates, ~100m):
+    N = 114
+    Mean |diff| = 3.58 mg/L (±1.10 95% CI)
+    Median |diff| = 1.00 mg/L
+    SD of differences = 6.92 mg/L
+
+  Field Blanks: N=111, values=[0.5], all below detection=True
+
+  KEY FINDING: Volunteer within-test repeatability (1.5 mg/L) is better
+  than professional within-test (2.5 mg/L), but this
+  reflects the 5 mg/L quantization floor — volunteers cannot detect
+  sub-5 mg/L differences due to the drop-count method.
+
+
+2. MATCHED-PAIRS ANALYSIS (PRIMARY — co-located sites)
+----------------------------------------
+
+  Phase 1 matched pairs: N=25 at 4 volunteer sites
+  Matching criteria: ≤125m spatial, ≤72h temporal
+
+  Paired t-test (log-transformed):
+    t = -3.0315, p = 0.005758
+    Mean vol/pro ratio: 0.721 (-27.9%)
+
+  Wilcoxon signed-rank (non-parametric):
+    W = 84.0, p = 0.034174
+
+  Bland-Altman agreement:
+    Mean difference (Vol - Pro): -16.3 mg/L
+    SD of differences: 33.8 mg/L
+    95% limits of agreement: [-82.6, 50.0] mg/L
+
+  CONCLUSION: SIGNIFICANT (p=0.0058).
+  Volunteers tend to read -27.9% relative to
+  professionals. This is the 'accuracy' component.
+
+
+3. REGIONAL LINEAR MIXED-EFFECTS MODEL (EXPLORATORY)
+----------------------------------------
+
+  Formula: log(Chloride) ~ IsVolunteer + JulianSin + JulianCos + Longitude + (1|Site)
+  REML estimation
+  N = 895, Sites = 92
+  Professional: 115 observations at 12 sites
+  Volunteer: 780 observations at 80 sites
+
+  Fixed Effects:
+    Intercept      : coef=-37.6634, p=0.000001 ***, 95% CI=[-52.6343, -22.6925]
+    IsVolunteer    : coef=-0.4333, p=0.047028 *, 95% CI=[-0.8609, -0.0057]
+    JulianSin      : coef=+0.1102, p=0.000002 ***, 95% CI=[+0.0649, +0.1555]
+    JulianCos      : coef=+0.0221, p=0.385765 , 95% CI=[-0.0278, +0.0719]
+    Longitude      : coef=-0.4350, p=0.000000 ***, 95% CI=[-0.5878, -0.2822]
+
+  Random Effects:
+    Site variance: 0.3304 (SD=0.5748)
+
+  INTERPRETATION:
+    IsVolunteer coefficient = -0.4333 (p = 0.047028)
+    Back-transformed: volunteers read 0.648x professional (-35.2%)
+    CONCLUSION: SIGNIFICANT. A systematic bias of -35.2% exists
+    between volunteer and professional readings after controlling
+    for season and geography.
+
+
+3. DATA PROVENANCE
+----------------------------------------
+  QA Data: 2.5 QA Data.xlsx (Karla Spinner → Joey Dyer → Miguel, Feb 20 2026)
+  Volunteer: ArcGIS FeatureServer (Blue Thumb, OCC public API)
+  Analysis window: 2022-07-18 to 2024-05-21
+  Region: lon [-100.23, -95.51], lat [34.83, 37.82]
+  Statistical framework: Dyer (2026), meeting recommendation
+  Reference: Dyer et al. (2025) PeerJ 13:e20234
