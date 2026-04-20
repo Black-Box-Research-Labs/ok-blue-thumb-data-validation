@@ -33,7 +33,8 @@ resultphyschem-ok.zip
 filesd.zip
 filesd/
 Zoom.pkg
-scripts/*
+scripts/experiments/
+scripts/draft_cnenvser_inquiry.py
 docs/bluethumb_audit_publication_analysis.md
 docs/bluethumb_comprehensive_systems_analysis.md
 .gitignore
@@ -52,3 +53,5 @@ docs/Dyer\ 2025*.pdf
 docs/Dyer\ 2025*.txt
 docs/Blue\ Thumb\ Dashboard*.txt
 data/outputs/phase2_lme/phase2_update_joey_response.txt
+.claude/*
+slide_review/*
