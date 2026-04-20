@@ -148,7 +148,7 @@ This model was specified by J. Dyer (personal communication, February 2026) foll
 
 The subsampling was designed to test a specific, pre-specified hypothesis (geographic confound) rather than to optimize model fit. The hypothesis was proposed by J. Dyer prior to the subsampling analysis based on his published characterization of Oklahoma's West-East salinity gradient (Dyer et al. 2025).
 
-**Regional LME model (exploratory).** A broader model using all volunteer and professional records within the QA dataset's spatiotemporal window (2022-2024, north-central Oklahoma, N=895 observations, 92 sites):
+**Regional LME model (exploratory).** A broader model using all volunteer and professional records within the QA dataset's spatiotemporal window (2022-2024, north-central Oklahoma, N=895 observations, 92 sites). The temporal scope is restricted to the Rotating Basin QA dataset's collection period (July 2022 to May 2024) so that the precision baselines established in Section 2.5 are contemporaneous with the field observations being modeled. Extending the window to the full volunteer archive (2005-present) or professional archive (1993-present) would introduce decades of instrument drift, method changes, and volunteer training differences that could confound the method comparison:
 
 log(Chloride) ~ IsVolunteer + sin(2 pi Julian / 365) + cos(2 pi Julian / 365) + Longitude + (1 | Site)
 
@@ -273,6 +273,8 @@ The weak less-than-24-hour bin (R-squared = 0.001) contains 12 pairs from a sing
 
 ### 3.4 Primary result: Linear Mixed-Effects Model
 
+The matched-pairs analysis (Section 3.3) directly compares volunteer and professional measurements of the same water at co-located sites, yielding an apparent -28% low bias (p = 0.003). The regional model below asks whether this pattern holds at landscape scale across all 92 sites, including the 80 volunteer sites and 12 professional sites that have no geographic overlap. The two analyses are independent -- the regional model uses all 895 observations without matching -- and their convergence on a similar apparent bias (-28% matched-pairs, -35% regional) from different angles strengthens the case that a single underlying mechanism, rather than statistical artifact, drives the result. Section 3.5 identifies that mechanism as the geographic confound.
+
 **Regional model (N=895 observations, 92 sites).**
 
 The GLMM applied to all volunteer and professional records within the QA dataset's spatiotemporal window (2022-2024, north-central Oklahoma) produces the following fixed effects:
@@ -394,15 +396,21 @@ The matched-pairs analysis uses N=25 pairs from 4 volunteer sites. This is a sma
 
 The Blue Thumb program was explicitly designed to monitor streams that professional agencies cannot afford to cover continuously. These headwater and low-order streams are ecologically important, frequently impacted by nonpoint source pollution, and entirely unmonitored by professional programs. The matched-pairs analysis validates the instrument. The coverage analysis quantifies why the instrument matters. The low N is a direct measurement of geographic complementarity.
 
-### 4.7 Calibration potential
+### 4.7 Implications for regulatory data integration
+
+Blue Thumb biological data -- macroinvertebrate, fish, and habitat assessments -- are already included in Oklahoma's biennial Integrated Report and may be used for TMDL development (Oklahoma Conservation Commission 2019). These biological data are collected by the same volunteers, under the same EPA-approved Quality Assurance Project Plan (QTRAK #21-430), as the chemical data evaluated in this study. Blue Thumb chemical data, by contrast, currently serves a screening and flagging function: exceedances are reported to the Oklahoma Department of Environmental Quality, which may initiate professional follow-up monitoring, but the chemical data are not directly incorporated into use-support assessments.
+
+The results of this study suggest that this asymmetry is not supported by the available evidence for chloride. Volunteer chloride measurements are precise to the method's resolution limit, accurate with a known and conservative directional bias (+4 to +5 mg/L), and free of systematic observer effects when geographic confounds are controlled (p = 0.54). The 18-year indoor QA record provides a longer and more rigorous accuracy baseline than exists for many professional monitoring programs. Whether these findings are sufficient to support direct incorporation of volunteer chloride data into Oklahoma's assessment framework is a policy decision beyond the scope of this study, but the statistical basis for differential treatment of chemical and biological data collected under the same QAPP is no longer clear.
+
+### 4.8 Calibration potential
 
 The indoor QA data suggests a straightforward calibration application: at operational concentrations (below 100 mg/L), volunteers consistently read approximately one drop (5 mg/L) high. A concentration-dependent correction function could be derived from the 867-test dataset to produce calibrated volunteer readings. At high concentrations (above 100 mg/L), a larger correction of approximately +32 mg/L would be required. Whether such calibration improves the downstream utility of the data for regulatory or research purposes depends on the specific application. This is identified as future work.
 
-### 4.8 Virtual triangulation as a general framework
+### 4.9 Virtual triangulation as a general framework
 
 The virtual triangulation approach -- spatially and temporally co-locating volunteer and professional records in a public data archive -- is not specific to Blue Thumb, to chloride, or to Oklahoma. It is applicable to any volunteer monitoring program that submits data to the EPA Water Quality Portal under a distinct OrganizationIdentifier. Oklahoma's Blue Thumb program is currently the clearest example of a program where this data infrastructure exists and the record volume is sufficient to support the analysis. If other state citizen science programs adopt distinct WQP organization identifiers, the same retrospective validation approach becomes available to them at zero marginal field cost. This study provides both the methodological template and the proof of concept.
 
-### 4.9 Limitations
+### 4.10 Limitations
 
 1. **Small matched-pairs sample size.** N=25 from 4 volunteer sites. Bootstrap CIs on OLS slope and R-squared are wide, and the Deming regression is underpowered. Point estimates are stable across parameter sweeps, but individual pair-level heterogeneity is high.
 2. **Pre-2015 volunteer data.** 13 of 25 matched pairs use volunteer records from the OCC R-Shiny export that predate the ArcGIS FeatureServer (which begins in 2015). These records were verified against the ArcGIS feed where overlap exists (2,026/2,027 match), but the pre-2015 records cannot be independently cross-validated.
@@ -431,9 +439,6 @@ Oklahoma's approach -- designing volunteer protocols to mirror professional stan
 ## 6. Acknowledgments
 
 The authors thank Karla Spinner (Oklahoma Conservation Commission) for retrieving and delivering the Rotating Basin QA dataset; Cheryl Cheadle (OCC Blue Thumb Program Director) for program context, institutional support, and newsletter collaboration; Rebecca Bond (OCC Blue Thumb Director) for organizing the formal collaboration, facilitating data access, and providing the OCC Quality Assurance Project Plan; Shellie Willoughby (OCC GIS Manager and Assistant State GIS Coordinator) for enabling the ArcGIS REST API data infrastructure that made volunteer data cross-validation possible; Jacob Askey for building the Blue Thumb Dashboard and collaborative technical development; James Ross for field monitoring partnership at Wolf Creek, Lawton, Oklahoma; and Dr. Clinton Bryant for introducing the first author to the Blue Thumb program.
-
-[NOTE: If Rebecca Bond's role warrants co-authorship rather than acknowledgment, discuss explicitly before submission.]
-
 ---
 
 ## 7. References
