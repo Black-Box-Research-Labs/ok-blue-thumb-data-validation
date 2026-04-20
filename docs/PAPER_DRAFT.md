@@ -493,21 +493,36 @@ Zuur, A.F., Ieno, E.N., Walker, N.J., Saveliev, A.A., and Smith, G.M. (2009). *M
 
 ---
 
-## 8. Figure Captions
+## 8. Figures
 
-**Figure 1. Variance decomposition: professional QA vs. volunteer replicates.** (A) Mean absolute difference (mg/L) with 95% CI error bars for three measurement scenarios: volunteer within-test titration replicates (N=2,566, mean |diff| = 1.53 mg/L), professional within-test churn splitter duplicates (N=113, mean |diff| = 2.51 mg/L), and professional within-site spatial replicates approximately 100 m apart (N=114, mean |diff| = 3.58 mg/L). (B) Pie chart showing volunteer titration replicate agreement: 73.2% identical, 24.1% differ by one drop (5 mg/L), 2.7% differ by two or more drops. 97.3% of pairs agree within one drop. File: `phase2_lme/variance_decomposition.png`.
+**Figure 1. Variance decomposition: professional QA vs. volunteer replicates.** (A) Mean absolute difference (mg/L) with 95% CI error bars for three measurement scenarios: volunteer within-test titration replicates (N=2,566, mean |diff| = 1.53 mg/L), professional within-test churn splitter duplicates (N=113, mean |diff| = 2.51 mg/L), and professional within-site spatial replicates approximately 100 m apart (N=114, mean |diff| = 3.58 mg/L). (B) Pie chart showing volunteer titration replicate agreement: 73.2% identical, 24.1% differ by one drop (5 mg/L), 2.7% differ by two or more drops. 97.3% of pairs agree within one drop.
 
-**Figure 2. Quantization effect: drop-count resolution.** (A) Histogram comparing the distribution of chloride values measured by professional instruments (smooth continuous distribution) and volunteer drop-count titration (discrete spikes at exact multiples of 5 mg/L). 100% of volunteer readings are quantized to 5 mg/L intervals. (B) Resolution comparison confirming the discrete nature of volunteer measurements. File: `phase2_lme/quantization_effect.png`.
+![Figure 1. Variance decomposition](../data/outputs/phase2_lme/variance_decomposition.png)
 
-**Figure 3. Indoor QA accuracy analysis.** (A) Histogram of volunteer kit error (volunteer reading minus known standard concentration, N=867 tests). The distribution is positively skewed, confirming systematic high bias. (B) Box plots of error stratified by concentration range, showing that bias scales with concentration: minimal at low concentrations (at or below 50 mg/L), moderate at mid-range (50 to 100 mg/L), and substantial at high concentrations (above 100 mg/L). Red dashed line at zero indicates perfect accuracy. File: `phase2_lme/qa_accuracy_analysis.png`.
+**Figure 2. Quantization effect: drop-count resolution.** (A) Histogram comparing the distribution of chloride values measured by professional instruments (smooth continuous distribution) and volunteer drop-count titration (discrete spikes at exact multiples of 5 mg/L). 100% of volunteer readings are quantized to 5 mg/L intervals. (B) Resolution comparison confirming the discrete nature of volunteer measurements.
 
-**Figure 4. Field validation scatter plots.** (A) Volunteer-to-professional matched pairs (N=25, R-squared = 0.607, slope = 0.813, p = 4.4 x 10^-6). Blue line: OLS regression fit. Gray dashed line: 1:1 perfect agreement. File: `vol_to_pro_validation_plot.png`. (B) Professional-to-professional baseline (N=42, R-squared = 0.753, slope = 0.735, p = 1.0 x 10^-13). File: `pro_to_pro_validation_plot.png`.
+![Figure 2. Quantization effect](../data/outputs/phase2_lme/quantization_effect.png)
 
-**Figure 5. Site distribution map showing geographic confound.** Geographic distribution of professional sites (green, N=12) and volunteer sites (blue, N=80) within the QA dataset's spatiotemporal window, with matched-pair sites highlighted (red stars, N=4). Volunteer sites are concentrated in eastern Oklahoma (mean longitude -96.67 degrees) while professional sites are distributed across central and western Oklahoma (mean longitude -98.05 degrees). The 1.4-degree East-West offset corresponds to approximately 115 km and aligns with the West-East salinity gradient documented by Dyer et al. (2025). File: `phase2_lme/site_distribution_map.png`.
+**Figure 3. Indoor QA accuracy analysis.** (A) Histogram of volunteer kit error (volunteer reading minus known standard concentration, N=867 tests). The distribution is positively skewed, confirming systematic high bias. (B) Box plots of error stratified by concentration range, showing that bias scales with concentration: minimal at low concentrations (at or below 50 mg/L), moderate at mid-range (50 to 100 mg/L), and substantial at high concentrations (above 100 mg/L). Red dashed line at zero indicates perfect accuracy.
 
-**Figure 6. Matched-pairs sensitivity analysis.** (A) Matched pairs colored by professional organization (CNENVSER, N=18; OWRB, N=7), revealing organization-specific measurement patterns. (B) Volunteer-to-professional chloride ratio by site, showing that the overall apparent bias is driven by CNENVSER sites while the OWRB subset (verified EPA 325.2) shows volunteers and professionals essentially identical (Vol/Pro = 1.027). File: `phase2_lme/matched_pairs_sensitivity.png`.
+![Figure 3. Indoor QA accuracy](../data/outputs/phase2_lme/qa_accuracy_analysis.png)
 
-**Figure 7. LME model diagnostics.** (A) Residuals vs. fitted values, showing random scatter around zero with minor heteroscedasticity. (B) Normal Q-Q plot of residuals, indicating approximate normality with slight tail deviation. (C) Residual distributions by observer type (professional vs. volunteer), showing comparable spread. (D) Residuals by longitude, confirming the model adequately accounts for the West-East spatial gradient. File: `phase2_lme/lme_diagnostics.png`.
+**Figure 4. Field validation scatter plots.** (A) Volunteer-to-professional matched pairs (N=25, R-squared = 0.607, slope = 0.813, p = 4.4 x 10^-6). Blue line: OLS regression fit. Gray dashed line: 1:1 perfect agreement. (B) Professional-to-professional baseline (N=42, R-squared = 0.753, slope = 0.735, p = 1.0 x 10^-13).
+
+![Figure 4A. Vol-to-Pro validation](../data/outputs/vol_to_pro_validation_plot.png)
+![Figure 4B. Pro-to-Pro baseline](../data/outputs/pro_to_pro_validation_plot.png)
+
+**Figure 5. Site distribution map showing geographic confound.** Geographic distribution of professional sites (green, N=12) and volunteer sites (blue, N=80) within the QA dataset's spatiotemporal window, with matched-pair sites highlighted (red stars, N=4). Volunteer sites are concentrated in eastern Oklahoma (mean longitude -96.67 degrees) while professional sites are distributed across central and western Oklahoma (mean longitude -98.05 degrees). The 1.4-degree East-West offset corresponds to approximately 115 km and aligns with the West-East salinity gradient documented by Dyer et al. (2025).
+
+![Figure 5. Site distribution map](../data/outputs/phase2_lme/site_distribution_map.png)
+
+**Figure 6. Matched-pairs sensitivity analysis.** (A) Matched pairs colored by professional organization (CNENVSER, N=18; OWRB, N=7), revealing organization-specific measurement patterns. (B) Volunteer-to-professional chloride ratio by site, showing that the overall apparent bias is driven by CNENVSER sites while the OWRB subset (verified EPA 325.2) shows volunteers and professionals essentially identical (Vol/Pro = 1.027).
+
+![Figure 6. Matched-pairs sensitivity](../data/outputs/phase2_lme/matched_pairs_sensitivity.png)
+
+**Figure 7. LME model diagnostics.** (A) Residuals vs. fitted values, showing random scatter around zero with minor heteroscedasticity. (B) Normal Q-Q plot of residuals, indicating approximate normality with slight tail deviation. (C) Residual distributions by observer type (professional vs. volunteer), showing comparable spread. (D) Residuals by longitude, confirming the model adequately accounts for the West-East spatial gradient.
+
+![Figure 7. LME diagnostics](../data/outputs/phase2_lme/lme_diagnostics.png)
 
 ---
 
