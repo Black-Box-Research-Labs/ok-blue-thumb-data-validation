@@ -7,6 +7,8 @@ Statistical validation of Oklahoma Blue Thumb citizen science chloride data agai
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
+> **One-command verification:** every headline claim in the manuscript reproduces from committed data via `python verify.py` (about 5 s to 1 min), and the same check runs in CI on every push. See [QUICKSTART.md](QUICKSTART.md) and [CLAIMS.md](CLAIMS.md).
+
 ---
 
 ## Primary Result — Linear Mixed-Effects Model (Phase 2)
@@ -23,6 +25,34 @@ GLMM: `log(Chloride) ~ IsVolunteer + sin(2πt/365) + cos(2πt/365) + Longitude +
 **Interpretation:** After controlling for geographic position and seasonal variation, volunteer measurements are statistically consistent with professional reference sensors at the landscape scale (p = 0.047). The IsVolunteer fixed effect is small relative to natural spatial and seasonal variation.
 
 Model fit: 25 matched pairs, 14 unique sites, site-level random intercept. Full output: `data/outputs/phase2_lme/phase2_lme_results.txt`.
+
+---
+
+## Reproducing key results
+
+The manuscript (`paper/main_v2.tex`) ships a reproducibility harness with a two-tier structure.
+
+**Tier 1 — fast verification (no raw data needed, about 5 s to 1 min):**
+
+```bash
+python3.11 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python verify.py
+```
+
+`verify.py` recomputes all six headline claim groups (precision, accuracy, regional GLMM, stratified subsampling, identifiability, coverage) from committed derived data, prints a PASS/FAIL table, and exits non-zero on any mismatch. The same command runs in CI (`.github/workflows/ci.yml`) on every push and pull request. The expected values are the numbers the manuscript states; each is pinned in `verify.py` with a citation to its line in `paper/main_v2.tex`.
+
+**Tier 2 — full reproduction from source data:**
+
+```bash
+python -m src.pipeline --skip-extract
+python scripts/phase2_lme_analysis.py
+python scripts/stratified_subsampling.py 1000 42
+```
+
+Tier 2 requires the OCC and EPA source files (see Data Availability in the manuscript), rebuilds the committed derived files via `scripts/generate_verification_data.py`, and runs the full 1,000-seed subsampling that yields the 98.6% non-significant figure (Tier 1 uses a fast 200-draw subsample asserting > 95%).
+
+Full details: [QUICKSTART.md](QUICKSTART.md). Claim-by-claim mapping (stated value to paper line to script to check): [CLAIMS.md](CLAIMS.md).
 
 ---
 

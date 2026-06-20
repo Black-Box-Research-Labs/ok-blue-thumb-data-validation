@@ -1,0 +1,20 @@
+================================================================
+FULL REGIONAL MODEL (sanity check vs. manuscript)
+================================================================
+  N=895 obs, 92 sites (115 pro, 780 vol)
+  IsVolunteer: beta=-0.4333, SE=0.2182, p=0.0470
+  manuscript reports: beta=-0.433, SE=0.218, p=0.047
+
+================================================================
+STRATIFIED SUBSAMPLING  (seed=42, 1000 fits, 0 failed)
+================================================================
+  subsample mean longitude: -97.361  (single reported draw: -96.452)
+  subsample mean chloride:  151.9   (single reported draw: 67.1)
+  IsVolunteer beta: median=-0.2798  [2.5%,97.5%]=[-0.7765, 0.1727]
+  IsVolunteer p:    median=0.4794  [2.5%,97.5%]=[0.0609, 0.9746]
+  fraction of balanced subsamples significant (p<0.05): 0.014
+  fraction NON-significant (p>=0.05):                   0.986
+
+  Single reported draw was beta=-0.2435, p=0.5434.
+  The apparent observer bias is non-significant in 98.6% of geographically balanced subsamples,
+  confirming it is a geographic artifact, not observer error.
