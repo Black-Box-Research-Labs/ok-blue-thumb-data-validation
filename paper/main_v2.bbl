@@ -6,6 +6,14 @@ Albus, K., Thompson, R., and Mitchell, F. (2019).
   literature tell us?
 \newblock {\em Citizen Science: Theory and Practice}, 4(1):14.
 
+\bibitem[{American Public Health Association} et~al.,
+  2017]{StandardMethods2017}
+{American Public Health Association}, {American Water Works Association}, and
+  {Water Environment Federation} (2017).
+\newblock Method 4500-{Cl}$^-$ {B}. {Argentometric Method}.
+\newblock In {\em Standard Methods for the Examination of Water and
+  Wastewater}. APHA/AWWA/WEF, 23rd edition.
+
 \bibitem[Blanco~Ramirez et~al., 2023]{BlancoRamirez2023}
 Blanco~Ramirez, S., van Meerveld, I., and Seibert, J. (2023).
 \newblock Citizen science approaches for water quality measurements.
@@ -16,6 +24,13 @@ Bland, J.~M. and Altman, D.~G. (1986).
 \newblock Statistical methods for assessing agreement between two methods of
   clinical measurement.
 \newblock {\em The Lancet}, 1(8476):307--310.
+
+\bibitem[Bolker et~al., 2009]{Bolker2009}
+Bolker, B.~M., Brooks, M.~E., Clark, C.~J., Geange, S.~W., Poulsen, J.~R.,
+  Stevens, M. H.~H., and White, J.-S.~S. (2009).
+\newblock Generalized linear mixed models: a practical guide for ecology and
+  evolution.
+\newblock {\em Trends in Ecology and Evolution}, 24(3):127--135.
 
 \bibitem[Bond, 2026]{Bond2026}
 Bond, R. (2026).
@@ -43,6 +58,13 @@ Dickson, A. et~al. (2024).
   {Bellingen Riverwatch} citizen science program and a complimentary government
   monitoring program.
 \newblock {\em Frontiers in Environmental Science}, 11:1237580.
+
+\bibitem[Dormann et~al., 2007]{Dormann2007}
+Dormann, C.~F., McPherson, J.~M., Araujo, M.~B., Bivand, R., Bolliger, J.,
+  Carl, G., et~al. (2007).
+\newblock Methods to account for spatial autocorrelation in the analysis of
+  species distributional data: a review.
+\newblock {\em Ecography}, 30(5):609--628.
 
 \bibitem[Dyer et~al., 2025]{Dyer2025}
 Dyer, J.~J., Dvorett, D., and Flotemersch, J. (2025).
@@ -85,6 +107,11 @@ O'Ryan, D., Grant, K., Herron, E., McConville, M., Mutter, E., et~al. (2025).
   quality environmental governance.
 \newblock {\em Community Science}, 4:e2025CSJ000126.
 
+\bibitem[Pinheiro and Bates, 2000]{Pinheiro2000}
+Pinheiro, J.~C. and Bates, D.~M. (2000).
+\newblock {\em Mixed-Effects Models in {S} and {S-PLUS}}.
+\newblock Springer.
+
 \bibitem[Quinlivan et~al., 2020]{Quinlivan2020}
 Quinlivan, L., Chapman, D.~V., and Sullivan, T. (2020).
 \newblock Validating citizen science monitoring of ambient water quality for
@@ -110,5 +137,11 @@ Shaw, K. (2026).
 \newblock {Blue Thumb} chloride {QA} session data, 2007--2025 [dataset].
 \newblock Oklahoma Conservation Commission. Personal communication, March 2,
   2026.
+
+\bibitem[Zuur et~al., 2009]{Zuur2009}
+Zuur, A.~F., Ieno, E.~N., Walker, N.~J., Saveliev, A.~A., and Smith, G.~M.
+  (2009).
+\newblock {\em Mixed Effects Models and Extensions in Ecology with {R}}.
+\newblock Springer.
 
 \end{thebibliography}
