@@ -288,7 +288,7 @@ The 1.4-degree East--West offset corresponds to approximately 115~km. The docume
   \item A representative single draw: $\beta = -0.2435$, $p = 0.5434$, Vol/Pro ratio 0.784 ($-21.6\%$).
 \end{itemize}
 
-\textbf{The apparent observer effect does not survive geographic balancing: it is non-significant in 98.6\% of balanced subsamples} (median $p = 0.48$). The bias was in the streams, not in the volunteers (Figure~\ref{fig:sitemap}). This is the central inferential result of the study: the apparent observer bias detected by the regional model is a geographic artifact of monitoring site distribution, not a measurement error introduced by volunteers.
+\textbf{The apparent observer effect does not survive geographic balancing: it is non-significant in 98.6\% of balanced subsamples} (median $p = 0.48$; Figure~\ref{fig:subsampling}). The bias was in the streams, not in the volunteers (Figure~\ref{fig:sitemap}). This is the central inferential result of the study: the apparent observer bias detected by the regional model is a geographic artifact of monitoring site distribution, not a measurement error introduced by volunteers.
 
 This conclusion is independently corroborated by the indoor QA accuracy result above: if volunteers genuinely read low, the indoor QA would show negative errors against known standards. Instead, indoor QA consistently shows volunteers reading high ($+4$ to $+5$~mg/L). The two lines of evidence converge: the regional model's apparent bias is geographic, not methodological.
 
@@ -304,7 +304,7 @@ This conclusion is independently corroborated by the indoor QA accuracy result a
   \item 99\% of the Blue Thumb network operates in territory where no retrospective field comparison against a co-located professional record is possible.
 \end{itemize}
 
-The absence of professional counterparts is not a weakness of the study design. It is a direct measurement of the program's irreplaceable geographic coverage. The precision and accuracy analyses establish that the instrument and method are sound; the coverage analysis quantifies why the data those instruments produce matters: for the great majority of these streams, the volunteer record is the only record that exists.
+The absence of professional counterparts is not a weakness of the study design. It is a direct measurement of the program's irreplaceable geographic coverage (Figure~\ref{fig:coverage}). The precision and accuracy analyses establish that the instrument and method are sound; the coverage analysis quantifies why the data those instruments produce matters: for the great majority of these streams, the volunteer record is the only record that exists.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -438,6 +438,20 @@ The analysis code and derived datasets are available at \url{https://github.com/
 \includegraphics[width=\textwidth]{../data/outputs/phase2_lme/lme_diagnostics.png}
 \caption{LME model diagnostics. (A) Residuals vs.\ fitted values, showing random scatter around zero with minor heteroscedasticity. (B) Normal Q--Q plot of residuals, indicating approximate normality with slight tail deviation. (C) Residual distributions by observer type (professional vs.\ volunteer), showing comparable spread. (D) Residuals by longitude, confirming the model adequately accounts for the West--East spatial gradient.}
 \label{fig:diagnostics}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../data/outputs/phase2_lme/primary_result_subsampling.png}
+\caption{Geographic confound test (primary result). (A) Distribution of the IsVolunteer $p$-value across 1{,}000 geographically balanced subsamples (12 volunteer sites, 3 per longitude quartile, matched to the 12 professional sites; fixed seed). The full regional model on the unbalanced data is significant ($p = 0.047$; the dashed line marks the 0.05 threshold), but after balancing the West--East gradient the volunteer effect is non-significant in 98.6\% of subsamples (median $p = 0.48$). (B) Distribution of the IsVolunteer coefficient across the same subsamples (median $-0.28$); the unbalanced regional estimate ($-0.433$) is shown for reference. The apparent observer bias is an artifact of monitoring-site geography, not observer error.}
+\label{fig:subsampling}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../data/outputs/phase2_lme/coverage_curve.png}
+\caption{Geographic coverage of the Blue Thumb network. (A) Percentage of the 327 volunteer chloride monitoring sites whose nearest professional station (Haversine distance) exceeds a given distance: 93\% beyond 1~km, 60\% beyond 5~km, and 28\% beyond 10~km. (B) Distribution of the nearest-professional distance across all 327 sites. For the great majority of these stream reaches the volunteer record is the only record that exists.}
+\label{fig:coverage}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

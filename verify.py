@@ -294,6 +294,14 @@ def check_subsampling():
     record("4. Subsampling: median p", EXP_SUB_MEDIAN_P, median_p, 0.08,
            note="paper reports median p approx 0.48")
 
+    # Tertiary: the committed 1,000-draw distribution behind Figure fig:subsampling.
+    pv_path = PHASE2 / "subsample_pvalues.csv"
+    if pv_path.exists():
+        pv = pd.read_csv(pv_path)["p_value"].to_numpy()
+        record("4. Subsampling: committed 1000-draw frac non-sig",
+               EXP_SUB_FRAC_NONSIG, float(np.mean(pv >= 0.05)), 0.01,
+               note=f"subsample_pvalues.csv, N={len(pv)} (data behind the primary-result figure)")
+
 
 # ---------------------------------------------------------------------------
 # Claim 6: Coverage
