@@ -429,10 +429,15 @@ def run_spatial_coverage(volunteer_df, professional_df, v2p_matches, config):
         print("  Insufficient data for coverage analysis.")
         return
 
-    pro_tree = spatial.cKDTree(pro_sites[['lat', 'lon']].values)
-    vol_coords = vol_sites[['lat', 'lon']].values
-    dd, _ = pro_tree.query(vol_coords, k=1)
-    dist_km = dd * 111.0  # approximate degree-to-km
+    # Haversine great-circle distance to the nearest professional site (km).
+    R = 6371.0
+    vlat = np.radians(vol_sites['lat'].values)[:, None]
+    vlon = np.radians(vol_sites['lon'].values)[:, None]
+    plat = np.radians(pro_sites['lat'].values)[None, :]
+    plon = np.radians(pro_sites['lon'].values)[None, :]
+    a = (np.sin((plat - vlat) / 2) ** 2
+         + np.cos(vlat) * np.cos(plat) * np.sin((plon - vlon) / 2) ** 2)
+    dist_km = (2 * R * np.arcsin(np.sqrt(a))).min(axis=1)
 
     n_total = len(vol_sites)
     thresholds = [1, 5, 10, 25, 50]

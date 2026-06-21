@@ -16,8 +16,8 @@ Logic mirrors the existing analysis code exactly:
     (scripts/phase2_lme_analysis.py variance_decomposition / load_arcgis_replicates)
   - Professional precision: |routine - duplicate| and |routine - replicate| from
     data/2.5 QA Data.xlsx (same function)
-  - Coverage: KDTree nearest professional in (lat, lon) degrees * 111.0 km
-    (src/analysis.py run_spatial_coverage, degree-to-km factor 111.0)
+  - Coverage: Haversine great-circle distance to the nearest professional site
+    (src/analysis.py run_spatial_coverage)
 
 Inputs (gitignored locally; present in the authors' working tree):
   - data/raw/arcgis_volunteer_chloride.csv
@@ -92,9 +92,16 @@ def build_coverage_distances():
     pro_sites = pro.groupby("MonitoringLocationIdentifier").agg(
         lat=("LatitudeMeasure", "first"), lon=("LongitudeMeasure", "first"))
 
-    pro_tree = spatial.cKDTree(pro_sites[["lat", "lon"]].values)
-    dd, _ = pro_tree.query(vol_sites[["lat", "lon"]].values, k=1)
-    dist_km = dd * 111.0  # degree-to-km factor, matching src/analysis.run_spatial_coverage
+    # Haversine great-circle distance to the nearest professional site (km).
+    # Correct at Oklahoma latitude, where a degree of longitude is ~91 km, not 111.
+    R = 6371.0
+    vlat = np.radians(vol_sites["lat"].values)[:, None]
+    vlon = np.radians(vol_sites["lon"].values)[:, None]
+    plat = np.radians(pro_sites["lat"].values)[None, :]
+    plon = np.radians(pro_sites["lon"].values)[None, :]
+    a = (np.sin((plat - vlat) / 2) ** 2
+         + np.cos(vlat) * np.cos(plat) * np.sin((plon - vlon) / 2) ** 2)
+    dist_km = (2 * R * np.arcsin(np.sqrt(a))).min(axis=1)
 
     cov = pd.DataFrame({
         "volunteer_site": vol_sites.index,

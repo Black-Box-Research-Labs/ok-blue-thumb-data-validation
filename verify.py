@@ -93,7 +93,9 @@ EXP_SITES_BOTH_TYPES = 0          # 0 of 92 sites contain both observer types (l
 # Claim 6: Coverage (text lines 21, 36, 78, 300, 371)
 EXP_COV_PCT_FAR = 93.0           # 93\% of sites > 1 km from nearest professional (lines 21, 78, 300)
 EXP_COV_N_SITES = 327            # 327 unique volunteer chloride monitoring sites (lines 21, 78, 299)
-EXP_COV_N_FAR = 305            # "93\% (305 sites)" (line 300)
+EXP_COV_N_FAR = 305            # "93\% (305 sites)" > 1 km (line 300); Haversine
+EXP_COV_N_FAR5 = 196           # "60\% (196 sites)" > 5 km (line 301)
+EXP_COV_N_FAR10 = 90           # "28\% (90 sites)" > 10 km (line 302)
 
 # Subsampling run parameters for the fast verification path
 SUB_N_ITER = 200
@@ -301,11 +303,15 @@ def check_coverage():
     df = pd.read_csv(COVERAGE_DISTANCES)
     n_sites = len(df)
     n_far = int((df["nearest_professional_km"] > 1.0).sum())
+    n_far5 = int((df["nearest_professional_km"] > 5.0).sum())
+    n_far10 = int((df["nearest_professional_km"] > 10.0).sum())
     pct_far = 100.0 * n_far / n_sites
 
     record("6. Coverage: N volunteer sites", EXP_COV_N_SITES, n_sites, 0, exact=True)
     record("6. Coverage: N sites > 1 km", EXP_COV_N_FAR, n_far, 0, exact=True)
     record("6. Coverage: % sites > 1 km", EXP_COV_PCT_FAR, pct_far, 0.5)
+    record("6. Coverage: N sites > 5 km", EXP_COV_N_FAR5, n_far5, 0, exact=True)
+    record("6. Coverage: N sites > 10 km", EXP_COV_N_FAR10, n_far10, 0, exact=True)
 
 
 # ---------------------------------------------------------------------------
