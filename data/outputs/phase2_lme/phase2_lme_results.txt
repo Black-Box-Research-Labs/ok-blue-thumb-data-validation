@@ -4,6 +4,14 @@ Generated: 2026-02-22 11:08:18
 Model: Dyer (2026) recommended framework
 ======================================================================
 
+*** CONTEXT (v2): the manuscript is paper/main_v2.tex. Section 2 (matched pairs)
+*** was REMOVED from the manuscript. The Section 3 regional model's apparent
+*** significance (p=0.047) is confounded by zero volunteer/professional site
+*** overlap; stratified subsampling (scripts/stratified_subsampling.py) resolves
+*** it to non-significance (p=0.54; 98.6% of balanced subsamples). See
+*** data/outputs/phase2_lme/stratified_subsampling_results.txt and verify.py.
+======================================================================
+
 1. VARIANCE DECOMPOSITION
 ----------------------------------------
 
@@ -33,7 +41,7 @@ Model: Dyer (2026) recommended framework
   sub-5 mg/L differences due to the drop-count method.
 
 
-2. MATCHED-PAIRS ANALYSIS (PRIMARY — co-located sites)
+2. MATCHED-PAIRS ANALYSIS (REMOVED FROM MANUSCRIPT v2; co-located sites)
 ----------------------------------------
 
   Phase 1 matched pairs: N=25 at 4 volunteer sites
@@ -51,9 +59,9 @@ Model: Dyer (2026) recommended framework
     SD of differences: 33.8 mg/L
     95% limits of agreement: [-82.6, 50.0] mg/L
 
-  CONCLUSION: SIGNIFICANT (p=0.0058).
-  Volunteers tend to read -27.9% relative to
-  professionals. This is the 'accuracy' component.
+  CONCLUSION: apparent low bias (p=0.0058), vol/pro -27.9%.
+  NOTE: this matched-pairs analysis was REMOVED from the manuscript (v2);
+  the field comparison is not part of the published result set.
 
 
 3. REGIONAL LINEAR MIXED-EFFECTS MODEL (EXPLORATORY)
@@ -78,9 +86,10 @@ Model: Dyer (2026) recommended framework
   INTERPRETATION:
     IsVolunteer coefficient = -0.4333 (p = 0.047028)
     Back-transformed: volunteers read 0.648x professional (-35.2%)
-    CONCLUSION: SIGNIFICANT. A systematic bias of -35.2% exists
-    between volunteer and professional readings after controlling
-    for season and geography.
+    CONCLUSION: APPARENT bias of -35.2% (p=0.047028), but confounded: the 80
+    volunteer and 12 professional sites have zero geographic overlap. Stratified
+    subsampling (scripts/stratified_subsampling.py) resolves it to non-significance
+    (p=0.54; 98.6% of geographically balanced subsamples).
 
 
 3. DATA PROVENANCE

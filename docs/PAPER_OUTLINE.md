@@ -4,6 +4,8 @@
 
 ---
 
+> **SUPERSEDED (June 2026).** This is a pre-v2 planning outline. The restructure described below was completed: the manuscript is `paper/main_v2.tex`, the GLMM is the primary line, the "exploratory" label is gone, and the virtual-triangulation / matched-pairs analysis was cut. Kept for history only.
+
 ## PENDING RESTRUCTURE — Required before drafting (from Joey Dyer via Rebecca Bond, 2026-03-26)
 
 Joey's required Results order conflicts with the current outline structure. Three specific fixes needed before drafting begins:

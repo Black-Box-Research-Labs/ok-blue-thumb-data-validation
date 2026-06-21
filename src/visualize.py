@@ -59,10 +59,11 @@ def create_validation_plot(matches_df, config):
                  fontsize=16, fontweight='bold', pad=20)
     
     # Statistics text box
+    p_text = f'p = {p_value:.1e}' if p_value >= 1e-4 else 'p < 0.0001'
     stats_text = (f'N = {len(matches_df)}\n'
                   f'R² = {r_squared:.3f}\n'
                   f'Slope = {slope:.3f}\n'
-                  f'p < 0.0001')
+                  f'{p_text}')
     ax.text(0.05, 0.95, stats_text, transform=ax.transAxes,
             fontsize=12, verticalalignment='top',
             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))

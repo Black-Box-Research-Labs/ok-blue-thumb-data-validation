@@ -703,6 +703,12 @@ def write_summary_report(var_results, lme_result, lme_df, mp_results=None):
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write("Model: Dyer (2026) recommended framework\n")
         f.write("=" * 70 + "\n\n")
+        f.write("CONTEXT (v2): the manuscript is paper/main_v2.tex. Section 2 (matched\n")
+        f.write("pairs) was REMOVED from the manuscript. The Section 3 regional model's\n")
+        f.write("apparent significance (p=0.047) is confounded by zero volunteer/professional\n")
+        f.write("site overlap; stratified subsampling (scripts/stratified_subsampling.py)\n")
+        f.write("resolves it to non-significance (p=0.54; 98.6% of balanced subsamples).\n")
+        f.write("=" * 70 + "\n\n")
 
         f.write("1. VARIANCE DECOMPOSITION\n")
         f.write("-" * 40 + "\n")
@@ -725,7 +731,7 @@ def write_summary_report(var_results, lme_result, lme_df, mp_results=None):
                 f"  reflects the 5 mg/L quantization floor — volunteers cannot detect\n"
                 f"  sub-5 mg/L differences due to the drop-count method.\n")
 
-        f.write(f"\n\n2. MATCHED-PAIRS ANALYSIS (PRIMARY — co-located sites)\n")
+        f.write(f"\n\n2. MATCHED-PAIRS ANALYSIS (REMOVED FROM MANUSCRIPT v2; co-located sites)\n")
         f.write("-" * 40 + "\n")
         if mp_results:
             f.write(f"\n  Phase 1 matched pairs: N={mp_results['n_pairs']} at "
@@ -751,10 +757,9 @@ def write_summary_report(var_results, lme_result, lme_df, mp_results=None):
                 f.write(f"  and professional chloride readings show no systematic bias\n")
                 f.write(f"  after accounting for natural variation.\n")
             else:
-                f.write(f"\n  CONCLUSION: SIGNIFICANT (p={mp_results['paired_t_pval']:.4f}).\n")
-                f.write(f"  Volunteers tend to read "
-                        f"{(mp_results['mean_vol_pro_ratio']-1)*100:+.1f}% relative to\n")
-                f.write(f"  professionals. This is the 'accuracy' component.\n")
+                f.write(f"\n  CONCLUSION: apparent low bias (p={mp_results['paired_t_pval']:.4f}), "
+                        f"vol/pro {(mp_results['mean_vol_pro_ratio']-1)*100:+.1f}%.\n")
+                f.write(f"  NOTE: this matched-pairs analysis was REMOVED from the manuscript (v2).\n")
 
         f.write(f"\n\n3. REGIONAL LINEAR MIXED-EFFECTS MODEL (EXPLORATORY)\n")
         f.write("-" * 40 + "\n")
@@ -794,10 +799,10 @@ def write_summary_report(var_results, lme_result, lme_df, mp_results=None):
             f.write(f"    variation and the West-East gradient, volunteer and professional\n")
             f.write(f"    chloride readings are statistically indistinguishable.\n")
         else:
-            f.write(f"    CONCLUSION: SIGNIFICANT. A systematic bias of "
-                    f"{(mult-1)*100:+.1f}% exists\n")
-            f.write(f"    between volunteer and professional readings after controlling\n")
-            f.write(f"    for season and geography.\n")
+            f.write(f"    CONCLUSION: APPARENT bias of {(mult-1)*100:+.1f}% (p={observer_pval:.6f}),\n")
+            f.write(f"    but confounded: the volunteer and professional sites have zero geographic\n")
+            f.write(f"    overlap. Stratified subsampling (scripts/stratified_subsampling.py) resolves\n")
+            f.write(f"    it to non-significance (p=0.54; 98.6% of balanced subsamples).\n")
 
         f.write("\n\n3. DATA PROVENANCE\n")
         f.write("-" * 40 + "\n")

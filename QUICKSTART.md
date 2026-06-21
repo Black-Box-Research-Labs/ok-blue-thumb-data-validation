@@ -60,7 +60,7 @@ with the standalone script in Tier 2.
 Expected output footer:
 
 ```
-ALL CHECKS PASSED (27/27). Every headline claim reproduces from committed data.
+ALL CHECKS PASSED (30/30). Every headline claim reproduces from committed data.
 ```
 
 ---
