@@ -76,6 +76,25 @@ Full details: [QUICKSTART.md](QUICKSTART.md). Claim-by-claim mapping (stated val
 
 ---
 
+## Data pipeline and tests
+
+The `src/` package handles EPA WQP extraction and data preparation; it also produces the spatial-temporal matched pairs used in earlier analysis. The v2 results themselves come from the `scripts/` and `verify.py` steps above, so this pipeline is mainly for rebuilding the inputs from raw sources.
+
+```bash
+python -m src.pipeline                 # full run (downloads EPA WQP data)
+python -m src.pipeline --skip-extract  # use cached raw data
+
+# or step by step:
+python -m src.extract     # download from EPA WQP
+python -m src.transform   # clean, separate, load the volunteer export (SHA-256 verified)
+python -m src.analysis    # spatial-temporal matching
+python -m src.visualize   # validation plots
+
+pytest tests/test_pipeline.py -v       # pipeline test suite
+```
+
+---
+
 ## Data sources
 
 | Source | Type | Access |
