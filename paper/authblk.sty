@@ -1,5 +1,10 @@
 %% authblk.sty - minimal local stub providing \author, \affil, \Authfont, \Affilfont
-%% Based on the authblk package by Patrick W. Daly
+%% Based on the authblk package by Patrick W. Daly.
+%% Honors explicit optional-argument affiliation marks, e.g. \author[2]{Name}
+%% and \affil[2]{Address}; falls back to sequential auto-numbering when the
+%% optional argument is omitted. Each mark is expanded at storage time (via
+%% \xdef) so it is fixed per author/affil; multiple \affil entries accumulate
+%% (each on its own line) rather than overwriting one another.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{authblk}[2001/02/27 1.3 (PWD)]
 \newcommand\Authfont{\normalfont}
@@ -10,35 +15,28 @@
 \newcounter{auth}
 \newcounter{affil}
 \newlength{\affilsep}\setlength{\affilsep}{1.5em}
-\newif\ifnewaffil \newaffiltrue
-\let\AB@authold\author
+\gdef\AB@authors{}
+\gdef\AB@affillist{}
 \renewcommand\author[2][]{%
-  \ifnewaffil\addtocounter{affil}{1}%
-    \edef\AB@affilnote{\theaffil}\newaffilfalse
-  \fi
-  \addtocounter{auth}{1}%
+  \stepcounter{auth}%
+  \edef\AB@mark{#1}%
+  \ifx\AB@mark\@empty\edef\AB@mark{\arabic{auth}}\fi
   \ifnum\theauth=1\relax
-    \gdef\AB@authors{{\Authfont #2}\textsuperscript{\AB@affilnote}}%
+    \xdef\AB@authors{\unexpanded{{\Authfont #2}}\noexpand\textsuperscript{\AB@mark}}%
   \else
-    \g@addto@macro\AB@authors{, {\Authfont #2}\textsuperscript{\AB@affilnote}}%
+    \xdef\AB@authors{\unexpanded\expandafter{\AB@authors}, \unexpanded{{\Authfont #2}}\noexpand\textsuperscript{\AB@mark}}%
   \fi
 }
 \newcommand\affil[2][]{%
-  \newaffiltrue
-  \ifx\\#1\\%
-    \addtocounter{affil}{1}%
-    \edef\AB@note{\theaffil}%
-  \else
-    \def\AB@note{#1}%
-  \fi
+  \stepcounter{affil}%
+  \edef\AB@note{#1}%
+  \ifx\AB@note\@empty\edef\AB@note{\arabic{affil}}\fi
   \ifnum\theaffil=1\relax
-    \gdef\AB@affillist{\textsuperscript{\AB@note}{\Affilfont #2}}%
+    \xdef\AB@affillist{\noexpand\textsuperscript{\AB@note}\unexpanded{{\Affilfont #2}}}%
   \else
-    \g@addto@macro\AB@affillist{\\[0.3ex]\textsuperscript{\AB@note}{\Affilfont #2}}%
+    \xdef\AB@affillist{\unexpanded\expandafter{\AB@affillist}\unexpanded{\\[0.3ex]}\noexpand\textsuperscript{\AB@note}\unexpanded{{\Affilfont #2}}}%
   \fi
 }
-\gdef\AB@authors{}
-\gdef\AB@affillist{}
 \renewcommand\@author{%
   \AB@authors\\[1ex]\AB@affillist
 }
