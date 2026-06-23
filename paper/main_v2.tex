@@ -356,8 +356,6 @@ The indoor QA data suggests a straightforward calibration application: at operat
   \item \textbf{Single program.} The validation covers one volunteer program (Blue Thumb) in one state. The conclusions about precision, accuracy, and the geographic confound are specific to this program's protocols and to Oklahoma's stream geochemistry; generalization to other programs would require comparable data.
   \item \textbf{Hydrologic condition metadata.} The HydrologicCondition and HydrologicEvent fields are 0\% populated across all 18,299 professional WQP records in this dataset. Storm-event filtering is therefore impossible from the available metadata.
   \item \textbf{Volunteer data through 2024 only.} The R-Shiny export covers through 2024-12-31. The live ArcGIS FeatureServer contains more recent records (2025--2026) that were not included in the analyses reported here.
-  \item \textbf{Stratified subsampling reproducibility.} The geographic confound test (stratified random subsampling, $p=0.54$) was performed as a targeted hypothesis test following J.\ Dyer's pre-specified prediction. The analysis code is embedded within the Phase 2 LME script but has not been isolated into a standalone, independently executable script with a fixed random seed.
-  \item \textbf{Precision statistic derivation.} The 97.3\% volunteer replicate agreement figure is computed dynamically by the Phase 2 analysis script from 2,566 ArcGIS titration replicate pairs (73.2\% identical $+$ 24.1\% differing by one drop). This statistic is written to the variance decomposition figure but is not recorded in any static text output file.
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
